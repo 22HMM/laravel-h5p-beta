@@ -12,7 +12,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Hareom284\\LaravelH5p\\": "src/"
+            "Hareom284\\LaravelH5p\\": "src/LaravelH5p"
         }
     },
     "authors": [
@@ -30,7 +30,7 @@
      "extra": {
         "laravel": {
             "providers": [
-                "Hareom284\\LaravelH5p\\LaravelH5pServiceProvider"
+                "Hareom284\\LaravelH5p\\"
             ],
             "aliases": {
                 "LaravelH5p": "Hareom284\\LaravelH5p\\Facades"
