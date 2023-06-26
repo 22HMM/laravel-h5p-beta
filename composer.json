@@ -1,0 +1,29 @@
+{
+    "name": "hareom284/laravel-h5p",
+    "description": "This is laravel h5p plugin that use for content edition",
+    "type": "composer-plugin",
+    "require": {
+        "php" : "^8.0",
+        "laravel/framework": "^9.19",
+        "escolasoft/h5p-core": "^1.24",
+        "escolasoft/h5p-editor": "^1.24",
+        "guzzlehttp/guzzle": "^7.7"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hareom284\\LaravelH5p\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hareom284"
+        }
+    ],
+    "require-dev": {
+        "fzaninotto/faker": "^1.5",
+        "mockery/mockery": "^1.6",
+        "phpunit/phpunit": "^10.2",
+        "kitloong/laravel-migrations-generator": "^6.10"
+    }
+}
