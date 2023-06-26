@@ -26,5 +26,15 @@
         "phpunit/phpunit": "^10.2",
         "kitloong/laravel-migrations-generator": "^6.10",
         "laravel/pint": "^1.10"
+    },
+     "extra": {
+        "laravel": {
+            "providers": [
+                "Hareom284\\LaravelH5p\\LaravelH5pServiceProvider"
+            ],
+            "aliases": {
+                "LaravelH5p": "Hareom284\\LaravelH5p\\Facades"
+            }
+        }
     }
 }
