@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class H5pEventLog extends Model
 {
     protected $primaryKey = 'id';
+
     protected $fillable = [
         'user_id',
         'created_at',

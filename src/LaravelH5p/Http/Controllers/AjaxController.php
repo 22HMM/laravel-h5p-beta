@@ -3,15 +3,15 @@
 namespace Hareom284\LaravelH5p\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Hareom284\LaravelH5p\Events\H5pEvent;
 use H5PEditorEndpoints;
+use Hareom284\LaravelH5p\Eloquents\H5pContentsUserData;
+use Hareom284\LaravelH5p\Eloquents\H5pLibrary;
+use Hareom284\LaravelH5p\Eloquents\H5pResult;
+use Hareom284\LaravelH5p\Eloquents\H5pTmpfile;
+use Hareom284\LaravelH5p\Events\H5pEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Log;
-use Hareom284\LaravelH5p\Eloquents\H5pLibrary;
-use Hareom284\LaravelH5p\Eloquents\H5pResult;
-use Hareom284\LaravelH5p\Eloquents\H5pContentsUserData;
-use Hareom284\LaravelH5p\Eloquents\H5pTmpfile;
 
 class AjaxController extends Controller
 {
@@ -99,10 +99,9 @@ class AjaxController extends Controller
         $editor = $h5p::$h5peditor;
         $editor->ajax->action(H5PEditorEndpoints::FILES, $request->get('_token'), $request->get('contentId'));
 
-
         if ($nonce) {
             $last = H5pTmpfile::orderBy('id', 'desc')->first();
-            $last->update([ 'nonce' => $nonce ]);
+            $last->update(['nonce' => $nonce]);
         }
     }
 

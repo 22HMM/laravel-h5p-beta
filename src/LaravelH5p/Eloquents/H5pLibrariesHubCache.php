@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class H5pLibrariesHubCache extends Model
 {
     protected $primaryKey = 'id';
+
     protected $table = 'h5p_libraries_hub_cache';
+
     public $timestamps = false;
+
     protected $fillable = [
         'machine_name',
         'major_version',

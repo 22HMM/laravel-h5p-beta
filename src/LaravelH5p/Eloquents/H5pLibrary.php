@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\App;
 class H5pLibrary extends Model
 {
     protected $primaryKey = 'id';
+
     protected $fillable = [
         'name',
         'title',

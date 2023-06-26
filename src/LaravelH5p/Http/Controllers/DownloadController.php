@@ -21,7 +21,7 @@ class DownloadController extends Controller
 
         return response()
             ->download($interface->_download_file, '', [
-                'Content-Type'  => 'application/zip',
+                'Content-Type' => 'application/zip',
                 'Cache-Control' => 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0',
             ]);
 

@@ -1,4 +1,5 @@
 <?php
+
 Route::prefix('admin/h5p')->group(function () {
     Route::group(['middleware' => ['web']], function () {
         if (config('laravel-h5p.use_router') == 'EDITOR' || config('laravel-h5p.use_router') == 'ALL') {
@@ -71,7 +72,6 @@ Route::prefix('admin/h5p')->group(function () {
                 'Hareom284\LaravelH5p\Http\Controllers\AjaxController@contentUserData'
             )->name('h5p.ajax.content-user-data');
 
-
             //nonce
             Route::match(['GET', 'POST'], 'ajax/{nonce}/libraries', 'Hareom284\LaravelH5p\Http\Controllers\AjaxController@libraries');
             Route::post('ajax/{nonce}/files', 'Hareom284\LaravelH5p\Http\Controllers\AjaxController@files');
@@ -89,7 +89,6 @@ Route::prefix('admin/h5p')->group(function () {
 
 Route::get('h5p/embed/{id}', 'Hareom284\LaravelH5p\Http\Controllers\EmbedController')->name('h5p.embed.client');
 
-
-Route::get("/",function(){
-    return "hello world";
+Route::get('/', function () {
+    return 'hello world';
 });

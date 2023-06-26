@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class H5pContent extends Model
 {
     protected $primaryKey = 'id';
+
     protected $fillable = [
         'user_id',
         'title',

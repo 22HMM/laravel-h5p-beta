@@ -14,9 +14,9 @@ namespace Hareom284\LaravelH5p\Storages;
 
 use App;
 use DB;
+use H5peditorStorage;
 use Hareom284\LaravelH5p\Eloquents\H5pLibrary;
 use Hareom284\LaravelH5p\Eloquents\H5pTmpfile;
-use H5peditorStorage;
 use Hareom284\LaravelH5p\Repositories\LaravelH5pRepository;
 
 /**
@@ -39,7 +39,7 @@ class EditorStorage implements H5peditorStorage
 
     public function getLanguage($machineName, $majorVersion, $minorVersion, $language)
     {
-//        $language = 'ja';
+        //        $language = 'ja';
         // Load translation field from DB
         $return = DB::select(
             'SELECT hlt.translation FROM h5p_libraries_languages hlt
@@ -108,7 +108,6 @@ class EditorStorage implements H5peditorStorage
                 ->get();
 
             LaravelH5pRepository::fixCaseKeysArray(['majorVersion', 'minorVersion', 'patchVersion'], $libraries_result);
-
 
             // 모든 버전의 라리브러리가 로드되므로 하나의 가장 최신 라이브러리를 찾는 부분
             foreach ($libraries_result as $library) {

@@ -3,15 +3,15 @@
 namespace Hareom284\LaravelH5p\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Hareom284\LaravelH5p\Eloquents\H5pContent;
-use Hareom284\LaravelH5p\Events\H5pEvent;
 use H5pCore;
+use Hareom284\LaravelH5p\Eloquents\H5pContent;
+use Hareom284\LaravelH5p\Eloquents\H5pTmpfile;
+use Hareom284\LaravelH5p\Events\H5pEvent;
+use Hareom284\LaravelH5p\Exceptions\H5PException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-use Hareom284\LaravelH5p\Exceptions\H5PException;
 use Response;
-use Hareom284\LaravelH5p\Eloquents\H5pTmpfile;
 
 class H5pController extends Controller
 {
@@ -24,7 +24,7 @@ class H5pController extends Controller
                 $where->where('h5p_contents.title', $request->query('s'));
             }
             if ($request->query('sf') == 'creator') {
-                $where->leftJoin('users', 'users.id', 'h5p_contents.user_id')->where('users.name', 'like', '%' . $request->query('s') . '%');
+                $where->leftJoin('users', 'users.id', 'h5p_contents.user_id')->where('users.name', 'like', '%'.$request->query('s').'%');
             }
         }
 
@@ -54,15 +54,13 @@ class H5pController extends Controller
 
         $nonce = bin2hex(random_bytes(4));
 
-        $settings['editor']['ajaxPath'] .= $nonce . '/';
+        $settings['editor']['ajaxPath'] .= $nonce.'/';
         $settings['editor']['filesPath'] = asset('storage/h5p/editor');
-
 
         // create event dispatch
         event(new H5pEvent('content', 'new'));
 
         $user = Auth::user();
-
 
         return view('h5p.content.create', compact('settings', 'user', 'library', 'parameters', 'display_options', 'nonce'));
     }
@@ -95,18 +93,18 @@ class H5pController extends Controller
         try {
             if ($request->get('action') === 'create') {
                 $content['library'] = $core->libraryFromString($request->get('library'));
-                if (!$content['library']) {
+                if (! $content['library']) {
                     throw new H5PException('Invalid library.');
                 }
 
                 // Check if library exists.
                 $content['library']['libraryId'] = $core->h5pF->getLibraryId($content['library']['machineName'], $content['library']['majorVersion'], $content['library']['minorVersion']);
-                if (!$content['library']['libraryId']) {
+                if (! $content['library']['libraryId']) {
                     throw new H5PException('No such library');
                 }
 
                 $params = json_decode($request->get('parameters'));
-                if (!empty($params->metadata) && !empty($params->metadata->title)) {
+                if (! empty($params->metadata) && ! empty($params->metadata->title)) {
                     $content['title'] = $params->metadata->title;
                 } else {
                     $content['title'] = '';
@@ -182,12 +180,12 @@ class H5pController extends Controller
         // view Get the file and settings to print from
         $settings = $h5p::get_editor($content);
 
-        $settings['editor']['filesPath'] = asset('storage/h5p/content/' . $content['id']);
+        $settings['editor']['filesPath'] = asset('storage/h5p/content/'.$content['id']);
 
         // http://localhost:1000/storage/h5p/content/3/images/background-5fedd8eddcb4a.jpg
 
         // create event dispatch
-        event(new H5pEvent('content', 'edit', $content['id'], $content['title'], $content['library']['name'], $content['library']['majorVersion'] . '.' . $content['library']['minorVersion']));
+        event(new H5pEvent('content', 'edit', $content['id'], $content['title'], $content['library']['name'], $content['library']['majorVersion'].'.'.$content['library']['minorVersion']));
 
         $user = Auth::user();
 
@@ -219,13 +217,13 @@ class H5pController extends Controller
         try {
             if ($request->get('action') === 'create') {
                 $content['library'] = $core->libraryFromString($request->get('library'));
-                if (!$content['library']) {
+                if (! $content['library']) {
                     throw new H5PException('Invalid library.');
                 }
 
                 // Check if library exists.
                 $content['library']['libraryId'] = $core->h5pF->getLibraryId($content['library']['machineName'], $content['library']['majorVersion'], $content['library']['minorVersion']);
-                if (!$content['library']['libraryId']) {
+                if (! $content['library']['libraryId']) {
                     throw new H5PException('No such library');
                 }
 
@@ -236,7 +234,7 @@ class H5pController extends Controller
 
                 //new
                 $params = json_decode($request->get('parameters'));
-                if (!empty($params->metadata) && !empty($params->metadata->title)) {
+                if (! empty($params->metadata) && ! empty($params->metadata->title)) {
                     $content['title'] = $params->metadata->title;
                 } else {
                     $content['title'] = '';
@@ -351,13 +349,13 @@ class H5pController extends Controller
         $files = H5pTmpfile::where('nonce', $nonce)->get();
         foreach ($files as $file) {
             if (strpos($file->path, 'editor') !== false) {
-                $destFile = str_replace("/editor/", "/content/$contentId/", $file->path);
-                $destPath = storage_path('app/public/h5p' . $destFile);
+                $destFile = str_replace('/editor/', "/content/$contentId/", $file->path);
+                $destPath = storage_path('app/public/h5p'.$destFile);
                 $destDir = dirname($destPath);
-                if (!is_dir($destDir)) {
+                if (! is_dir($destDir)) {
                     mkdir($destDir, 0777, true);
                 }
-                rename(storage_path('app/public/h5p' . $file->path), $destPath);
+                rename(storage_path('app/public/h5p'.$file->path), $destPath);
                 $file->delete();
             }
         }
@@ -382,7 +380,7 @@ class H5pController extends Controller
         $skipContent = ($content === null);
 
         $content['title'] = $content['title'] ?? 'Example title';
-        if ($validator->isValidPackage($skipContent, $only_upgrade) && !$skipContent) {
+        if ($validator->isValidPackage($skipContent, $only_upgrade) && ! $skipContent) {
             if (function_exists('check_upload_size')) {
                 // Check file sizes before continuing!
                 $tmpDir = $interface->getUploadedH5pFolderPath();

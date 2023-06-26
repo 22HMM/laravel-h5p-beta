@@ -30,7 +30,7 @@ class MigrationCommand extends Command
         $this->line('');
         $this->info('Laravel-H5p Creating migration...');
 
-//        $this->laravel->view->addNamespace('entrust', substr(__DIR__, 0, -8) . 'views');
+        //        $this->laravel->view->addNamespace('entrust', substr(__DIR__, 0, -8) . 'views');
         //
         //        $rolesTable = Config::get('entrust.roles_table');
         //        $roleUserTable = Config::get('entrust.role_user_table');
@@ -72,7 +72,7 @@ class MigrationCommand extends Command
      *
      * @return bool
      */
-//    protected function createMigration($rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable) {
+    //    protected function createMigration($rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable) {
     //        $migrationFile = base_path("/database/migrations") . "/" . date('Y_m_d_His') . "_entrust_setup_tables.php";
     //
     //        $userModel = Config::get('auth.providers.users.model');

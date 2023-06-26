@@ -4,9 +4,9 @@ namespace Hareom284\LaravelH5p\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use DB;
+use H5PCore;
 use Hareom284\LaravelH5p\Eloquents\H5pContent;
 use Hareom284\LaravelH5p\Eloquents\H5pLibrary;
-use H5PCore;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Log;
@@ -27,10 +27,10 @@ class LibraryController extends Controller
             ],
             'containerSelector' => '#h5p-admin-container',
             'extraTableClasses' => '',
-            'l10n'              => [
-                'NA'             => trans('laravel-h5p.common.na'),
-                'viewLibrary'    => trans('laravel-h5p.library.viewLibrary'),
-                'deleteLibrary'  => trans('laravel-h5p.library.deleteLibrary'),
+            'l10n' => [
+                'NA' => trans('laravel-h5p.common.na'),
+                'viewLibrary' => trans('laravel-h5p.library.viewLibrary'),
+                'deleteLibrary' => trans('laravel-h5p.library.deleteLibrary'),
                 'upgradeLibrary' => trans('laravel-h5p.library.upgradeLibrary'),
             ],
         ]);
@@ -38,10 +38,10 @@ class LibraryController extends Controller
         foreach ($entrys as $library) {
             $usage = $interface->getLibraryUsage($library->id, $not_cached ? true : false);
             $settings['libraryList']['listData'][] = (object) [
-                'id'                     => $library->id,
-                'title'                  => $library->title.' ('.H5PCore::libraryVersion($library).')',
-                'restricted'             => ($library->restricted ? true : false),
-                'numContent'             => $interface->getNumContent($library->id),
+                'id' => $library->id,
+                'title' => $library->title.' ('.H5PCore::libraryVersion($library).')',
+                'restricted' => ($library->restricted ? true : false),
+                'numContent' => $interface->getNumContent($library->id),
                 'numContentDependencies' => intval($usage['content']),
                 'numLibraryDependencies' => intval($usage['libraries']),
             ];
@@ -57,6 +57,7 @@ class LibraryController extends Controller
             $settings['libraryList']['notCached'] = 0;
         }
         $hubOn = config('laravel-h5p.h5p_hub_is_enabled');
+
         return view('h5p.library.index', compact('entrys', 'settings', 'last_update', 'hubOn', 'required_files'));
     }
 
@@ -75,11 +76,11 @@ class LibraryController extends Controller
 
         // Build the translations needed
         $settings['libraryInfo']['translations'] = [
-            'noContent'             => trans('laravel-h5p.library.noContent'),
-            'contentHeader'         => trans('laravel-h5p.library.contentHeader'),
+            'noContent' => trans('laravel-h5p.library.noContent'),
+            'contentHeader' => trans('laravel-h5p.library.contentHeader'),
             'pageSizeSelectorLabel' => trans('laravel-h5p.library.pageSizeSelectorLabel'),
-            'filterPlaceholder'     => trans('laravel-h5p.library.filterPlaceholder'),
-            'pageXOfY'              => trans('laravel-h5p.library.pageXOfY'),
+            'filterPlaceholder' => trans('laravel-h5p.library.filterPlaceholder'),
+            'pageXOfY' => trans('laravel-h5p.library.pageXOfY'),
         ];
         $notCached = $interface->getNumNotFiltered();
         if ($notCached) {
@@ -91,16 +92,16 @@ class LibraryController extends Controller
             foreach ($contents as $content) {
                 $settings['libraryInfo']['content'][] = [
                     'title' => $content->title,
-                    'url'   => route('h5p.show', ['id' => $content->id]),
+                    'url' => route('h5p.show', ['id' => $content->id]),
                 ];
             }
         }
         // Build library info
         $settings['libraryInfo']['info'] = [
-            'version'         => H5PCore::libraryVersion($library),
-            'fullscreen'      => $library->fullscreen ? trans('laravel-h5p.common.yes') : trans('laravel-h5p.common.no'),
+            'version' => H5PCore::libraryVersion($library),
+            'fullscreen' => $library->fullscreen ? trans('laravel-h5p.common.yes') : trans('laravel-h5p.common.no'),
             'content_library' => $library->runnable ? trans('laravel-h5p.common.yes') : trans('laravel-h5p.common.no'),
-            'used'            => (isset($contents) ? count($contents) : trans('laravel-h5p.common.na')),
+            'used' => (isset($contents) ? count($contents) : trans('laravel-h5p.common.na')),
         ];
 
         $required_files = $this->assets(['js/h5p-library-details.js']);
@@ -133,7 +134,7 @@ class LibraryController extends Controller
                 Log::info('All is OK ');
             }
 
-//            if ($request->get('sync_hub')) {
+            //            if ($request->get('sync_hub')) {
             //                $h5p::$core->updateContentTypeCache();
             //            }
             // The uploaded file was not a valid H5P package
@@ -219,7 +220,7 @@ class LibraryController extends Controller
         $prefix = 'assets/vendor/h5p/h5p-core/';
         $return = [
             'scripts' => [],
-            'styles'  => [],
+            'styles' => [],
         ];
 
         foreach (H5PCore::$adminScripts as $script) {
@@ -253,11 +254,11 @@ class LibraryController extends Controller
      *
      * @since 1.1.0
      *
-     * @param int $id optional
+     * @param  int  $id optional
      */
     private function get_library($id = null)
     {
-//        if ($this->library !== NULL) {
+        //        if ($this->library !== NULL) {
         //            return $this->library; // Return the current loaded library.
         //        }
         if ($id === null) {
@@ -276,34 +277,34 @@ class LibraryController extends Controller
     public function display_libraries_page()
     {
         switch (filter_input(INPUT_GET, 'task', FILTER_SANITIZE_STRING)) {
-        case null:
-            $this->display_libraries();
+            case null:
+                $this->display_libraries();
 
-            return;
-        case 'show':
-            $this->display_library_details();
+                return;
+            case 'show':
+                $this->display_library_details();
 
-            return;
-        case 'delete':
-            $library = $this->get_library();
-            H5P_Plugin_Admin::print_messages();
-            if ($library) {
-                include_once 'views/library-delete.php';
-            }
+                return;
+            case 'delete':
+                $library = $this->get_library();
+                H5P_Plugin_Admin::print_messages();
+                if ($library) {
+                    include_once 'views/library-delete.php';
+                }
 
-            return;
-        case 'upgrade':
-            $library = $this->get_library();
-            if ($library) {
-                $settings = $this->display_content_upgrades($library);
-            }
-            include_once 'views/library-content-upgrade.php';
-            if (isset($settings)) {
-                $h5p = H5P_Plugin::get_instance();
-                $h5p->print_settings($settings, 'H5PAdminIntegration');
-            }
+                return;
+            case 'upgrade':
+                $library = $this->get_library();
+                if ($library) {
+                    $settings = $this->display_content_upgrades($library);
+                }
+                include_once 'views/library-content-upgrade.php';
+                if (isset($settings)) {
+                    $h5p = H5P_Plugin::get_instance();
+                    $h5p->print_settings($settings, 'H5PAdminIntegration');
+                }
 
-            return;
+                return;
         }
         echo '<div class="wrap"><h2>'.esc_html__('Unknown task.').'</h2></div>';
     }
@@ -316,9 +317,9 @@ class LibraryController extends Controller
     private function get_not_cached_settings($num)
     {
         return [
-            'num'      => $num,
-            'url'      => route('h5p.ajax.rebuild-cache'),
-            'message'  => __('Not all content has gotten their cache rebuilt. This is required to be able to delete libraries, and to display how many contents that uses the library.'),
+            'num' => $num,
+            'url' => route('h5p.ajax.rebuild-cache'),
+            'message' => __('Not all content has gotten their cache rebuilt. This is required to be able to delete libraries, and to display how many contents that uses the library.'),
             'progress' => __('1 content need to get its cache rebuilt. :num contents needs to get their cache rebuilt.', ['num' => $num]),
             //            'button' => __('Rebuild cache')
         ];
