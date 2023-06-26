@@ -30,7 +30,7 @@
      "extra": {
         "laravel": {
             "providers": [
-                "Hareom284\\LaravelH5p\\"
+            "Hareom284\\LaravelH5p"
             ],
             "aliases": {
                 "LaravelH5p": "Hareom284\\LaravelH5p\\Facades"
