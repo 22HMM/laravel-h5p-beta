@@ -12,7 +12,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Hareom284\\LaravelH5p\\": "src/LaravelH5p"
+            "Hareom284\\LaravelH5p\\": "src\\LaravelH5p"
         }
     },
     "authors": [
