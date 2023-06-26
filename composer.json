@@ -3,7 +3,7 @@
     "description": "This is laravel h5p plugin that use for content edition",
     "type": "composer-package",
     "require": {
-        "php" : "^8.0",
+        "php": "^8.0",
         "laravel/framework": "^9.19",
         "escolasoft/h5p-core": "^1.24",
         "escolasoft/h5p-editor": "^1.24",
@@ -27,7 +27,7 @@
         "kitloong/laravel-migrations-generator": "^6.10",
         "laravel/pint": "^1.10"
     },
-     "extra": {
+    "extra": {
         "laravel": {
             "providers": [
                 "Hareom284\\LaravelH5p\\LaravelH5pServiceProvider"
