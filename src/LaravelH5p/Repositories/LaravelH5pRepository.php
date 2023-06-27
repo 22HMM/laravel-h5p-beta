@@ -703,6 +703,7 @@ class LaravelH5pRepository implements H5PFrameworkInterface
                 }
             }
         } else {
+            dd($array);
             foreach ($array as $row_key => $row) {
                 foreach ($keys as $key) {
                     $lckey = strtolower($key);
