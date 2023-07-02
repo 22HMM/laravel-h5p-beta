@@ -1,7 +1,7 @@
 {
     "name": "hareom284/laravel-h5p",
     "description": "This is laravel h5p plugin that use for content edition",
-    "type": "composer-package",
+    "type": "library",
     "require": {
         "php": "^8.0",
         "laravel/framework": "^9.19",
