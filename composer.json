@@ -5,8 +5,8 @@
     "require": {
         "php": "^8.0",
         "laravel/framework": "^9.19",
-        "escolasoft/h5p-core": "^1.24",
-        "escolasoft/h5p-editor": "^1.24",
+        "h5p/h5p-core": "1.24.*|dev-master",
+        "h5p/h5p-editor": "1.24.*|dev-master",
         "guzzlehttp/guzzle": "^7.7"
     },
     "license": "MIT",
