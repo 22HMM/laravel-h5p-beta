@@ -9,7 +9,7 @@ composer require hareom284/laravel-h5p
 Publish the Views, Config and so things.
 
 ```bash
-publish php artisan vendor:publish --provider="Hareom284\LaravelH5p\LaravelH5pServiceProvider"
+php artisan vendor:publish --provider="Hareom284\LaravelH5p\LaravelH5pServiceProvider"
 ```
 
 Migrate the Database
