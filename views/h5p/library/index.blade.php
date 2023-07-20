@@ -5,7 +5,7 @@
 
     <div class="row">
 
-        <div class="col-md-9">
+        <div class="col-md-9 mt-4 ms-3">
 
             <div class="panel panel-primary">
 
@@ -48,7 +48,7 @@
             </div>
 
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 mt-4 me-2">
             <div class="panel panel-primary">
 
                 {!! Form::open(['route' => ['h5p.library.clear'], 'id'=>'laravel-h5p-update-content-type-cache', 'class'=>'form-horizontal', 'enctype'=>"multipart/form-data"]) !!}
@@ -69,7 +69,7 @@
 
 
 
-                </div>
+        </div>
 
                 <div class="panel-footer">
                     <input type="hidden" id="sync_hub" name="sync_hub" value="">
@@ -92,7 +92,7 @@
                 {{ trans('laravel-h5p.library.search-result', ['count' => count($entrys)]) }}
             </p>
 
-            <table class="table text-middle text-center h5p-lists">
+            <table class="table text-middle text-center h5p-lists mx-2">
                 <colgroup>
                     <col width="*">
                     <col width="8%">
@@ -155,11 +155,9 @@
                         </td>
                     </tr>
                     @endforeach
-
-                 {!! $entrys->links() !!}
                 </tbody>
             </table>
-
+            {!! $entrys->links() !!}
         </div>
 
     </div>

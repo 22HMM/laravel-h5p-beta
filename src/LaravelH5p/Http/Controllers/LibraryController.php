@@ -2,7 +2,7 @@
 
 namespace Hareom284\LaravelH5p\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Src\Common\Infrastructure\Laravel\Controller;
 use DB;
 use H5PCore;
 use Hareom284\LaravelH5p\Eloquents\H5pContent;
