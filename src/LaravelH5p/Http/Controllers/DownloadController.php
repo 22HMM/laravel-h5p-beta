@@ -2,7 +2,7 @@
 
 namespace Hareom284\LaravelH5p\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Src\Common\Infrastructure\Laravel\Controller;
 use Hareom284\LaravelH5p\Events\H5pEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
