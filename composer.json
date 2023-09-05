@@ -34,5 +34,6 @@
                 "LaravelH5p": "Hareom284\\LaravelH5p\\Facades"
             }
         }
-    }
+    },
+    "minimum-stability": "v1.0",
 }
