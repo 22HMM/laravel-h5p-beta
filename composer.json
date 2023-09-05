@@ -26,6 +26,8 @@
         "kitloong/laravel-migrations-generator": "^6.10",
         "laravel/pint": "^1.10"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "extra": {
         "laravel": {
             "providers": [
